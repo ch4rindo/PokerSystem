@@ -1,8 +1,8 @@
 <?php
 
-namespace charindo\poker\trump;
+declare(strict_types=1);
 
-use Couchbase\InvalidStateException;
+namespace charindo\poker\trump;
 
 class Deck {
 
