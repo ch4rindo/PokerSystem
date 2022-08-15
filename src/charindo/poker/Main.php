@@ -14,15 +14,19 @@ class Main extends PluginBase {
         $deck = new Deck();
         $deck->initializeDeck();
         $count = 0;
-        foreach($deck->getCards() as $card) {
+
+        $cards = $deck->shuffle();
+        foreach($cards as $card) {
             var_dump($card->getDescription());
         }
         $this->getLogger()->info("TOTAL NUMBER OF CARDS: " . count($deck->getCards()));
-        if(!$deck->isBrokenDeck()) {
+        if(!$deck->isBrokenDeck($deck->getCards())) {
             $this->getLogger()->info("デッキは正常です");
         }else{
             $this->getLogger()->error("デッキが破損しています");
         }
+
+        var_dump($deck->takeCard()->getDescription());
         /**************************************************/
 
         $this->getLogger()->info("PokerSystemを読み込みました。");
