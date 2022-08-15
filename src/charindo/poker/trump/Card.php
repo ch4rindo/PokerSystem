@@ -30,10 +30,7 @@ class Card {
         CardSuits::DIAMOND => "Diamond",
         CardSuits::CLUB => "Club",
     ];
-
-    /**
-     * @throws InvalidStateException
-     */
+    
     public function __construct(int $suit = null, $number = null) {
         if(!is_null($suit)) {
             $this->setSuit($suit);
