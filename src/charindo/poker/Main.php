@@ -10,7 +10,7 @@ use pocketmine\plugin\PluginBase;
 class Main extends PluginBase {
 
     public function onEnable(): void {
-
+        /******************** デバック用 ********************/
         $deck = new Deck();
         $deck->initializeDeck();
         $count = 0;
@@ -23,6 +23,7 @@ class Main extends PluginBase {
         }else{
             $this->getLogger()->error("デッキが破損しています");
         }
+        /**************************************************/
 
         $this->getLogger()->info("PokerSystemを読み込みました。");
     }
