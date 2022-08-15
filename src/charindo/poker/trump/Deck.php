@@ -47,10 +47,35 @@ class Deck {
         return $this->cards;
     }
 
-    public function isBrokenDeck() : bool {
+    public function shuffle() : array {
+        shuffle($this->cards);
+        return $this->cards;
+    }
+
+    public function addCard(Card $card) : bool {
+        $temporary_deck = $this->cards;
+        $temporary_deck[] = $card;
+
+        if($this->isBrokenDeck($temporary_deck)) {
+            return false;
+        }
+
+        $this->cards[] = $card;
+        return true;
+    }
+
+    public function takeCard() : ?Card {
+        if(count($this->getCards()) <= 0) {
+            return null;
+        }
+
+        return array_shift($this->cards);
+    }
+
+    public function isBrokenDeck(array $deck) : bool {
         $target_deck = [];
 
-        foreach($this->getCards() as $card) {
+        foreach($deck as $card) {
             $target_deck[] = $card->getDescription();
         }
 
@@ -59,9 +84,12 @@ class Deck {
             return true;
         }
 
-        if(count($target_deck) !== 52) {
+        /*
+         * なんかいらない気がする
+         */
+        /*if(count($target_deck) !== 52) {
             return true;
-        }
+        }*/
 
         return false;
     }
