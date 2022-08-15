@@ -8,7 +8,7 @@ class Card {
 
     protected int $number;
 
-    protected string $suit;
+    protected int $suit;
 
     protected array $cardNumbers = [
         CardNumbers::ACE => "Ace",
@@ -33,13 +33,13 @@ class Card {
         CardSuits::CLUB => "Club",
     ];
 
-    public function __construct(int $suit = null, $number = null) {
+    public function __construct(int $suit = null, int $number = null) {
         if(!is_null($suit)) {
             $this->setSuit($suit);
         }
 
         if(!is_null($number)) {
-            $this->setValue($number);
+            $this->setNumber($number);
         }
     }
 
@@ -63,14 +63,14 @@ class Card {
         return $this->getSuitString() . "'s " . $this->getNumberString();
     }
 
-    public function setValue($value) : void {
-        if(!$this->isValidNumber($value)){
+    public function setNumber(int $number) : void {
+        if(!$this->isValidNumber($number)){
             throw new \InvalidArgumentException("No such numbered cards exist for Trump");
         }
-        $this->number = $value;
+        $this->number = $number;
     }
 
-    public function setSuit($suit) : void {
+    public function setSuit(int $suit) : void {
         if(!$this->isValidSuit($suit)){
             throw new \InvalidArgumentException("No such numbered cards exist for Trump");
         }
