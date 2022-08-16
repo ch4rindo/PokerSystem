@@ -54,7 +54,9 @@ class Deck {
     }
 
     public function shuffle() : array {
-        shuffle($this->cards);
+        for($i=0; $i < 5; $i++) {
+            shuffle($this->cards);
+        }
         return $this->cards;
     }
 
