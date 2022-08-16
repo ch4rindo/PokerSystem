@@ -10,39 +10,16 @@ class Card {
 
     protected int $suit;
 
-    protected array $cardNumbers = [
-        CardNumbers::ACE => "Ace",
-        CardNumbers::TWO => "Two",
-        CardNumbers::THREE => "Three",
-        CardNumbers::FOUR => "Four",
-        CardNumbers::FIVE => "Five",
-        CardNumbers::SIX => "Six",
-        CardNumbers::SEVEN => "Seven",
-        CardNumbers::EIGHT => "Eight",
-        CardNumbers::NINE => "Nine",
-        CardNumbers::TEN => "Ten",
-        CardNumbers::JACK => "Jack",
-        CardNumbers::QUEEN => "Queen",
-        CardNumbers::KING => "King",
-    ];
-
-    protected array $cardSuits = [
-        CardSuits::SPADE => "Spade",
-        CardSuits::HEART => "Heart",
-        CardSuits::DIAMOND => "Diamond",
-        CardSuits::CLUB => "Club",
-    ];
-
     public function __construct(int $suit = null, int $number = null) {
-        if(!is_null($suit)) {
+        if ($suit !== null) {
             $this->setSuit($suit);
-        }else{
+        } else {
             throw new \InvalidArgumentException("Cannot assign null to a suit");
         }
 
-        if(!is_null($number)) {
+        if ($number !== null) {
             $this->setNumber($number);
-        }else{
+        } else {
             throw new \InvalidArgumentException("Cannot assign null to a number");
         }
     }
@@ -52,7 +29,7 @@ class Card {
     }
 
     public function getNumberString() : string {
-        return $this->cardNumbers[$this->number];
+        return CardStore::NUMBERS[$this->number];
     }
 
     public function getSuit() : int {
@@ -60,32 +37,39 @@ class Card {
     }
 
     public function getSuitString() : string {
-        return $this->cardSuits[$this->suit];
+        return CardStore::SUITS[$this->suit];
     }
 
     public function getDescription() : string {
         return $this->getSuitString() . "'s " . $this->getNumberString();
     }
 
+    public function getArray() : array {
+        return [
+            "suit" => $this->suit,
+            "number" => $this->number,
+        ];
+    }
+
     public function setNumber(int $number) : void {
-        if(!$this->isValidNumber($number)){
+        if (!$this->isValidNumber($number)) {
             throw new \InvalidArgumentException("No such numbered cards exist for Trump");
         }
         $this->number = $number;
     }
 
     public function setSuit(int $suit) : void {
-        if(!$this->isValidSuit($suit)){
+        if (!$this->isValidSuit($suit)) {
             throw new \InvalidArgumentException("No such numbered cards exist for Trump");
         }
         $this->suit = $suit;
     }
 
     protected function isValidNumber($value) : bool {
-        return array_key_exists($value, $this->cardNumbers);
+        return array_key_exists($value, CardStore::NUMBERS);
     }
 
     protected function isValidSuit($value) : bool {
-        return array_key_exists($value, $this->cardSuits);
+        return array_key_exists($value, CardStore::SUITS);
     }
 }
