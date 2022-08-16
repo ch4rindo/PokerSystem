@@ -10,7 +10,7 @@ use charindo\poker\trump\CardNumbers;
 use charindo\poker\trump\CardSuits;
 use charindo\poker\trump\Deck;
 use pocketmine\plugin\PluginBase;
-use tedo0627\inventoryui\InventoryUI;
+use charindo\poker\module\inventoryui\InventoryUI;
 
 class Main extends PluginBase {
 
