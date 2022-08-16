@@ -14,6 +14,7 @@ class PlayerJoin implements Listener {
     protected Main $owner;
 
     public function __construct(Main $owner) {
+        $owner->getLogger()->info("Loaded PlayerJoin");
         $this->owner = $owner;
     }
 
