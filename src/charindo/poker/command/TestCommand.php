@@ -49,6 +49,7 @@ class TestCommand extends VanillaCommand{
             var_dump(Judgement::isThreeOfAKind($cards));
             var_dump(Judgement::isFullHouse($cards));
             var_dump(Judgement::isFourOfAKind($cards));
+            var_dump(Judgement::isFlush($cards));
 
             var_dump(new Card(1,1));
 
