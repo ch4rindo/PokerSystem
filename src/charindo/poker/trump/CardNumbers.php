@@ -19,4 +19,5 @@ class CardNumbers {
     public const JACK = 11;
     public const QUEEN = 12;
     public const KING = 13;
+    public const GOD = 14;
 }
