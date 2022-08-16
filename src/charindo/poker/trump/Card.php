@@ -36,10 +36,14 @@ class Card {
     public function __construct(int $suit = null, int $number = null) {
         if(!is_null($suit)) {
             $this->setSuit($suit);
+        }else{
+            throw new \InvalidArgumentException("Cannot assign null to a suit");
         }
 
         if(!is_null($number)) {
             $this->setNumber($number);
+        }else{
+            throw new \InvalidArgumentException("Cannot assign null to a number");
         }
     }
 
