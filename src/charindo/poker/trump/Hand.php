@@ -19,11 +19,11 @@ class Hand {
     }
 
     public function addCard(Card $card) : bool {
-        if(!$this->canAddCard($card)){
-            $this->cards[] = $card;
+        if (!$this->canAddCard($card)) {
             return false;
         }
 
+        $this->cards[] = $card;
         return true;
     }
 
@@ -34,17 +34,17 @@ class Hand {
     public function canAddCard(Card $card) : bool {
         $target_hand = [];
 
-        foreach($this->cards as $c) {
+        foreach ($this->cards as $c) {
             $target_hand[] = $c->getDescription();
         }
         $target_hand[] = $card->getDescription();
 
         $unique_hand = array_unique($target_hand);
-        if(count($unique_hand) !== count($target_hand)) { //被っているカードが存在する場合
+        if (count($unique_hand) !== count($target_hand)) { //被っているカードが存在する場合
             return false;
         }
 
-        if(count($target_hand) > $this->max){ //ハンドの合計枚数が2を超えた場合
+        if (count($target_hand) > $this->max){ //ハンドの合計枚数が2を超えた場合
             return false;
         }
 
