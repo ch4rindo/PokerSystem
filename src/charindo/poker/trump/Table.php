@@ -19,11 +19,11 @@ class Table {
     }
 
     public function addCard(Card $card) : bool {
-        if(!$this->canAddCard($card)){
-            $this->cards[] = $card;
+        if (!$this->canAddCard($card)) {
             return false;
         }
 
+        $this->cards[] = $card;
         return true;
     }
 
@@ -34,17 +34,17 @@ class Table {
     public function canAddCard(Card $card) : bool {
         $target_table = [];
 
-        foreach($this->cards as $c) {
+        foreach ($this->cards as $c) {
             $target_table[] = $c->getDescription();
         }
         $target_table[] = $card->getDescription();
 
         $unique_table = array_unique($target_table);
-        if(count($unique_table) !== count($target_table)) { //被っているカードが存在する場合
+        if (count($unique_table) !== count($target_table)) { //被っているカードが存在する場合
             return false;
         }
 
-        if(count($target_table) > $this->max){ //テーブルの合計枚数が5を超えた場合
+        if (count($target_table) > $this->max){ //テーブルの合計枚数が5を超えた場合
             return false;
         }
 
