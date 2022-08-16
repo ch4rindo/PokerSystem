@@ -7,9 +7,11 @@ namespace charindo\poker\trump;
 class Deck {
 
     protected array $cards;
+    protected int $max;
 
     public function __construct() {
         $this->cards = [];
+        $this->max = 52;
     }
 
     public function initializeDeck() : void{
@@ -47,6 +49,10 @@ class Deck {
         return $this->cards;
     }
 
+    public function getCount() : int {
+        return count($this->cards);
+    }
+
     public function shuffle() : array {
         shuffle($this->cards);
         return $this->cards;
@@ -56,11 +62,31 @@ class Deck {
         $temporary_deck = $this->cards;
         $temporary_deck[] = $card;
 
-        if($this->isBrokenDeck($temporary_deck)) {
+        if(!$this->canAddCard($card)) {
             return false;
         }
 
         $this->cards[] = $card;
+        return true;
+    }
+
+    public function canAddCard(Card $card) : bool {
+        $target_deck = [];
+
+        foreach($this->cards as $c) {
+            $target_deck[] = $c->getDescription();
+        }
+        $target_deck[] = $card->getDescription();
+
+        $unique_deck = array_unique($target_deck);
+        if(count($unique_deck) !== count($target_deck)) { //被っているカードが存在する場合
+            return false;
+        }
+
+        if(count($target_deck) > $this->max){ //デッキの合計枚数が52を超えた場合
+            return false;
+        }
+
         return true;
     }
 
@@ -70,27 +96,5 @@ class Deck {
         }
 
         return array_shift($this->cards);
-    }
-
-    public function isBrokenDeck(array $deck) : bool {
-        $target_deck = [];
-
-        foreach($deck as $card) {
-            $target_deck[] = $card->getDescription();
-        }
-
-        $unique_deck = array_unique($target_deck);
-        if(count($unique_deck) !== count($target_deck)) {
-            return true;
-        }
-
-        /*
-         * なんかいらない気がする
-         */
-        /*if(count($target_deck) !== 52) {
-            return true;
-        }*/
-
-        return false;
     }
 }
