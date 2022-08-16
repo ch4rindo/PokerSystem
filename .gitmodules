@@ -1,0 +1,3 @@
+[submodule "src/tedo0627"]
+	path = src/tedo0627
+	url = https://github.com/tedo0627/InventoryUI.git
