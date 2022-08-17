@@ -101,6 +101,7 @@ class Judgement {
         foreach ($cards as $card) {
             $card_suits[] = $card->getSuit();
         }
+        
         foreach (CardStore::SUITS as $suit => $word) {
             $result = array_keys($card_suits, $suit);
             if (count($result) >= 5) {
