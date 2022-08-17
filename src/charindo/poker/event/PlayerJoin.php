@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace charindo\poker\event;
 
+use charindo\poker\module\inventoryui\CustomInventory;
 use pocketmine\event\Listener;
 
 use charindo\poker\Main;
@@ -21,5 +22,7 @@ class PlayerJoin implements Listener {
     public function onJoin(PlayerJoinEvent $event) : void {
         $player = $event->getPlayer();
         $name = $player->getName();
+
+        //$player->setCurrentWindow(new CustomInventory())
     }
 }
