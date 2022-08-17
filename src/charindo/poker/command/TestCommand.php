@@ -44,14 +44,8 @@ class TestCommand extends VanillaCommand{
                 $table->addCard($deck->takeCard());
             }
             $cards = array_merge($hand->getCards(), $table->getCards());
-            var_dump(Judgement::isOnePair($cards));
-            var_dump(Judgement::isTwoPair($cards));
-            var_dump(Judgement::isThreeOfAKind($cards));
-            var_dump(Judgement::isFullHouse($cards));
-            var_dump(Judgement::isFourOfAKind($cards));
-            var_dump(Judgement::isFlush($cards));
 
-            var_dump(new Card(1,1));
+            var_dump(Judgement::isFlush($cards));
 
             $sender->sendMessage("§a§lコマンドは正常に実行されました");
         }else{
