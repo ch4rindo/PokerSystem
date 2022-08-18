@@ -101,7 +101,7 @@ class Judgement {
         foreach ($cards as $card) {
             $card_suits[] = $card->getSuit();
         }
-        
+
         foreach (CardStore::SUITS as $suit => $word) {
             $result = array_keys($card_suits, $suit);
             if (count($result) >= 5) {
@@ -112,42 +112,6 @@ class Judgement {
     }
 
     public static function isFullHouse(array $cards) : bool {
-        /*
-        $card_numbers = [];
-        foreach ($cards as $card) {
-            $card_numbers[] = $card->getNumber();
-        }
-        while (($key = array_search(1, $card_numbers)) !== false) {
-            $card_numbers[$key] = CardNumbers::GOD;
-        }
-        arsort($card_numbers);
-
-        $covered_cards = array_values(array_unique(array_diff($card_numbers, array_keys(array_count_values($card_numbers), 1))));
-
-        $isThreeCard = false;
-        $isOnePair = false;
-        if (count($covered_cards) > 0) {
-            foreach ($covered_cards as $card_number) {
-                if ($isThreeCard && $isOnePair) {
-                    continue;
-                }
-
-                $result = array_keys($card_numbers, $card_number);
-                if (count($result) === 3) {
-                    $isThreeCard = true;
-                } elseif (count($result) === 2) {
-                    $isOnePair = true;
-                }
-            }
-        }
-
-        if($isThreeCard && $isOnePair){
-            return true;
-        }
-
-        return false;
-        */
-
         return self::isThreeOfAKind($cards) && self::isOnePair($cards);
     }
 
